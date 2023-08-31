@@ -276,6 +276,7 @@ func (a appCreator) newApp(
 		db,
 		traceStore,
 		true,
+		a.encodingConfig,
 		appOpts,
 		baseapp.SetPruning(pruningOpts),
 		baseapp.SetMinGasPrices(cast.ToString(appOpts.Get(server.FlagMinGasPrices))),
@@ -313,6 +314,7 @@ func (a appCreator) appExport(
 		db,
 		traceStore,
 		height == -1, // -1: no height provided
+		a.encodingConfig,
 		appOpts,
 	)
 
