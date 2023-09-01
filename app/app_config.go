@@ -49,8 +49,6 @@ import (
 	ibcexported "github.com/cosmos/ibc-go/v7/modules/core/exported"
 	"google.golang.org/protobuf/types/known/durationpb"
 
-	consumerchain2modulev1 "consumerchain2/api/consumerchain2/consumerchain2/module"
-	consumerchain2moduletypes "consumerchain2/x/consumerchain2/types"
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 )
 
@@ -84,7 +82,6 @@ var (
 		icatypes.ModuleName,
 		ibcfeetypes.ModuleName,
 		consensustypes.ModuleName,
-		consumerchain2moduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	}
 
@@ -118,7 +115,6 @@ var (
 		icatypes.ModuleName,
 		ibcfeetypes.ModuleName,
 		consensustypes.ModuleName,
-		consumerchain2moduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/beginBlockers
 	}
 
@@ -146,7 +142,6 @@ var (
 		icatypes.ModuleName,
 		ibcfeetypes.ModuleName,
 		consensustypes.ModuleName,
-		consumerchain2moduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/endBlockers
 	}
 
@@ -285,10 +280,6 @@ var (
 			{
 				Name:   consensustypes.ModuleName,
 				Config: appconfig.WrapAny(&consensusmodulev1.Module{}),
-			},
-			{
-				Name:   consumerchain2moduletypes.ModuleName,
-				Config: appconfig.WrapAny(&consumerchain2modulev1.Module{}),
 			},
 			// this line is used by starport scaffolding # stargate/app/moduleConfig
 		},
