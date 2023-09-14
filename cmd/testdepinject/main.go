@@ -8,25 +8,38 @@ import (
 	paramskeeper "github.com/cosmos/cosmos-sdk/x/params/keeper"
 )
 
-type App struct {
-	ParamsKeeper   paramskeeper.Keeper
-	EvidenceKeeper evidencekeeper.Keeper
-}
+func GetX() int { return 42 }
 
 func main() {
+	/*
+		var x int
+		err := depinject.Inject(
+			depinject.Supply(
+				GetX,
+			),
+			&x,
+		)
+		fmt.Println(x, err)
+	*/
 	var (
-		// app App
 		pk paramskeeper.Keeper
 		ek evidencekeeper.Keeper
 	)
 	err := depinject.Inject(
-		depinject.Supply(
+		depinject.Provide(
 			GetEvidenceKeeper,
 			GetParamsKeeper,
 		),
 		&ek, &pk,
 	)
-	fmt.Println(pk, ek, err)
+	_ = pk
+	fmt.Println("ERR", err)
 }
-func GetParamsKeeper() *paramskeeper.Keeper     { return &paramskeeper.Keeper{} }
-func GetEvidenceKeeper() *evidencekeeper.Keeper { return &evidencekeeper.Keeper{} }
+
+func GetParamsKeeper() paramskeeper.Keeper {
+	return paramskeeper.Keeper{}
+}
+
+func GetEvidenceKeeper() evidencekeeper.Keeper {
+	return evidencekeeper.Keeper{}
+}

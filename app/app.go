@@ -197,6 +197,7 @@ func New(
 				appOpts,
 				// supply ibc keeper getter for the IBC modules
 				app.GetIBCeKeeper,
+				app.GetStakingKeeper,
 
 				// ADVANCED CONFIGURATION
 				//
@@ -232,7 +233,7 @@ func New(
 		&app.AccountKeeper,
 		&app.BankKeeper,
 		&app.CapabilityKeeper,
-		&app.ConsumerKeeper,
+		// &app.ConsumerKeeper,
 		&app.SlashingKeeper, // XXX how to replace the slashing dependency staking to consumer ???
 		&app.CrisisKeeper,
 		&app.UpgradeKeeper,
@@ -426,6 +427,10 @@ func (app *App) RegisterAPIRoutes(apiSvr *api.Server, apiConfig config.APIConfig
 // GetIBCeKeeper returns the IBC keeper
 func (app *App) GetIBCeKeeper() *ibckeeper.Keeper {
 	return app.IBCKeeper
+}
+
+func (app *App) GetStakingKeeper() *ibcconsumerkeeper.Keeper {
+	return &app.ConsumerKeeper
 }
 
 // GetMaccPerms returns a copy of the module account permissions
