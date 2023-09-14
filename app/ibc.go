@@ -43,7 +43,7 @@ func (app *App) registerIBCModules() {
 	app.MountKVStores(app.keys)
 
 	// set params subspaces
-	for _, m := range []string{ibctransfertypes.ModuleName, ibcexported.ModuleName, icahosttypes.SubModuleName, icacontrollertypes.SubModuleName} {
+	for _, m := range []string{ibctransfertypes.ModuleName, ibcexported.ModuleName, icahosttypes.SubModuleName, icacontrollertypes.SubModuleName, ibcconsumertypes.ModuleName} {
 		app.ParamsKeeper.Subspace(m)
 	}
 

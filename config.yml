@@ -1,4 +1,7 @@
 version: 1
+validation: consumer
+build:
+  main: "cmd/consumerchain2d"
 accounts:
 - name: alice
   coins:
