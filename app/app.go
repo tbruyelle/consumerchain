@@ -196,7 +196,7 @@ func New(
 				appOpts,
 				// supply ibc keeper getter for the IBC modules
 				app.GetIBCeKeeper,
-				app.GetStakingKeeper,
+				&app.ConsumerKeeper,
 
 				// ADVANCED CONFIGURATION
 				//
@@ -232,13 +232,12 @@ func New(
 		&app.AccountKeeper,
 		&app.BankKeeper,
 		&app.CapabilityKeeper,
-		// &app.ConsumerKeeper,
-		&app.SlashingKeeper, // XXX how to replace the slashing dependency staking to consumer ???
+		&app.SlashingKeeper,
 		&app.CrisisKeeper,
 		&app.UpgradeKeeper,
 		&app.ParamsKeeper,
 		&app.AuthzKeeper,
-		&app.EvidenceKeeper, // XXX how to replace the slashing dependency staking to consumer ???
+		&app.EvidenceKeeper,
 		&app.FeeGrantKeeper,
 		&app.GroupKeeper,
 		&app.ConsensusParamsKeeper,
@@ -302,7 +301,7 @@ func New(
 
 	app.sm.RegisterStoreDecoders()
 
-	// XXX theres probably a better way to SetAnteHandler with app wiring
+	// TODO theres probably a better way to SetAnteHandler with app wiring
 	anteHandler, err := NewAnteHandler(
 		HandlerOptions{
 			HandlerOptions: ante.HandlerOptions{
@@ -426,10 +425,6 @@ func (app *App) RegisterAPIRoutes(apiSvr *api.Server, apiConfig config.APIConfig
 // GetIBCeKeeper returns the IBC keeper
 func (app *App) GetIBCeKeeper() *ibckeeper.Keeper {
 	return app.IBCKeeper
-}
-
-func (app *App) GetStakingKeeper() *ibcconsumerkeeper.Keeper {
-	return &app.ConsumerKeeper
 }
 
 // GetMaccPerms returns a copy of the module account permissions
