@@ -217,3 +217,13 @@ replace (
 	// replace broken goleveldb
 	github.com/syndtr/goleveldb => github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
 )
+
+//replace  cosmossdk.io/depinject => /home/tom/gohack/cosmossdk.io/depinject
+
+replace github.com/cosmos/interchain-security/v3 => /home/tom/gohack/github.com/cosmos/interchain-security/v3
+
+replace github.com/cosmos/cosmos-sdk => /home/tom/gohack/github.com/cosmos/cosmos-sdk
+
+replace github.com/cosmos/ibc-go/v7 => /home/tom/gohack/github.com/cosmos/ibc-go/v7
+
+replace github.com/cometbft/cometbft => /home/tom/gohack/github.com/cometbft/cometbft
